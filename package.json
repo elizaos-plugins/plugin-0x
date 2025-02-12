@@ -1,6 +1,6 @@
 {
     "name": "@elizaos/plugin-0x",
-    "version": "0.1.9",
+    "version": "0.25.6-alpha.1",
     "type": "module",
     "main": "dist/index.js",
     "module": "dist/index.js",
@@ -40,5 +40,8 @@
     "peerDependencies": {
         "@elizaos/core": "workspace:*",
         "zod": "^3.22.4"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
