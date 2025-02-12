@@ -6,5 +6,15 @@ export default defineConfig({
     sourcemap: true,
     clean: true,
     format: ["esm"], // Ensure you're targeting CommonJS
-    external: ["dotenv", "fs", "path", "https", "http"],
+    external: [
+        "dotenv",
+        "fs",
+        "path",
+        "https",
+        "http",
+        "zod",
+        "ethers",
+        "whatwg-url",
+        "@elizaos/core",
+    ],
 });
