@@ -37,7 +37,6 @@
         "vitest": "^2.1.5"
     },
     "peerDependencies": {
-        "@elizaos/core": "workspace:*",
         "zod": "^3.22.4"
     },
     "publishConfig": {
