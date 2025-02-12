@@ -3,7 +3,7 @@ import {
   hashToCurve,
   schnorr,
   secp256k1
-} from "./chunk-4L6P6TY5.js";
+} from "./chunk-B5ITAE2Y.js";
 import "./chunk-PR4QN5HX.js";
 export {
   encodeToCurve,
@@ -11,4 +11,4 @@ export {
   schnorr,
   secp256k1
 };
-//# sourceMappingURL=secp256k1-QUTB2QC2.js.map
+//# sourceMappingURL=secp256k1-627L7AH3.js.map

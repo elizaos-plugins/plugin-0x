@@ -1,10 +1,11 @@
-// ../../node_modules/viem/node_modules/abitype/dist/esm/version.js
+// ../../node_modules/abitype/dist/esm/version.js
 var version = "1.0.7";
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/errors.js
+// ../../node_modules/abitype/dist/esm/errors.js
 var BaseError = class _BaseError extends Error {
   constructor(shortMessage, args = {}) {
-    const details = args.cause instanceof _BaseError ? args.cause.details : args.cause?.message ? args.cause.message : args.details;
+    var _a;
+    const details = args.cause instanceof _BaseError ? args.cause.details : ((_a = args.cause) == null ? void 0 : _a.message) ? args.cause.message : args.details;
     const docsPath4 = args.cause instanceof _BaseError ? args.cause.docsPath || args.docsPath : args.docsPath;
     const message = [
       shortMessage || "An error occurred.",
@@ -54,16 +55,16 @@ var BaseError = class _BaseError extends Error {
   }
 };
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/regex.js
+// ../../node_modules/abitype/dist/esm/regex.js
 function execTyped(regex, string) {
   const match = regex.exec(string);
-  return match?.groups;
+  return match == null ? void 0 : match.groups;
 }
 var bytesRegex = /^bytes([1-9]|1[0-9]|2[0-9]|3[0-2])?$/;
 var integerRegex = /^u?int(8|16|24|32|40|48|56|64|72|80|88|96|104|112|120|128|136|144|152|160|168|176|184|192|200|208|216|224|232|240|248|256)?$/;
 var isTupleRegex = /^\(.+?\).*?$/;
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/formatAbiParameter.js
+// ../../node_modules/abitype/dist/esm/human-readable/formatAbiParameter.js
 var tupleRegex = /^tuple(?<array>(\[(\d*)\])*)$/;
 function formatAbiParameter(abiParameter) {
   let type = abiParameter.type;
@@ -77,7 +78,7 @@ function formatAbiParameter(abiParameter) {
         type += ", ";
     }
     const result = execTyped(tupleRegex, abiParameter.type);
-    type += `)${result?.array ?? ""}`;
+    type += `)${(result == null ? void 0 : result.array) ?? ""}`;
     return formatAbiParameter({
       ...abiParameter,
       type
@@ -90,7 +91,7 @@ function formatAbiParameter(abiParameter) {
   return type;
 }
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/formatAbiParameters.js
+// ../../node_modules/abitype/dist/esm/human-readable/formatAbiParameters.js
 function formatAbiParameters(abiParameters) {
   let params = "";
   const length = abiParameters.length;
@@ -103,10 +104,11 @@ function formatAbiParameters(abiParameters) {
   return params;
 }
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/formatAbiItem.js
+// ../../node_modules/abitype/dist/esm/human-readable/formatAbiItem.js
 function formatAbiItem(abiItem) {
+  var _a;
   if (abiItem.type === "function")
-    return `function ${abiItem.name}(${formatAbiParameters(abiItem.inputs)})${abiItem.stateMutability && abiItem.stateMutability !== "nonpayable" ? ` ${abiItem.stateMutability}` : ""}${abiItem.outputs?.length ? ` returns (${formatAbiParameters(abiItem.outputs)})` : ""}`;
+    return `function ${abiItem.name}(${formatAbiParameters(abiItem.inputs)})${abiItem.stateMutability && abiItem.stateMutability !== "nonpayable" ? ` ${abiItem.stateMutability}` : ""}${((_a = abiItem.outputs) == null ? void 0 : _a.length) ? ` returns (${formatAbiParameters(abiItem.outputs)})` : ""}`;
   if (abiItem.type === "event")
     return `event ${abiItem.name}(${formatAbiParameters(abiItem.inputs)})`;
   if (abiItem.type === "error")
@@ -118,7 +120,7 @@ function formatAbiItem(abiItem) {
   return "receive() external payable";
 }
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/runtime/signatures.js
+// ../../node_modules/abitype/dist/esm/human-readable/runtime/signatures.js
 var errorSignatureRegex = /^error (?<name>[a-zA-Z$_][a-zA-Z0-9$_]*)\((?<parameters>.*?)\)$/;
 function isErrorSignature(signature) {
   return errorSignatureRegex.test(signature);
@@ -169,7 +171,7 @@ var functionModifiers = /* @__PURE__ */ new Set([
   "storage"
 ]);
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/errors/abiItem.js
+// ../../node_modules/abitype/dist/esm/human-readable/errors/abiItem.js
 var UnknownTypeError = class extends BaseError {
   constructor({ type }) {
     super("Unknown type.", {
@@ -199,7 +201,7 @@ var UnknownSolidityTypeError = class extends BaseError {
   }
 };
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/errors/abiParameter.js
+// ../../node_modules/abitype/dist/esm/human-readable/errors/abiParameter.js
 var InvalidParameterError = class extends BaseError {
   constructor({ param }) {
     super("Invalid ABI parameter.", {
@@ -277,7 +279,7 @@ var InvalidAbiTypeParameterError = class extends BaseError {
   }
 };
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/errors/signature.js
+// ../../node_modules/abitype/dist/esm/human-readable/errors/signature.js
 var InvalidSignatureError = class extends BaseError {
   constructor({ signature, type }) {
     super(`Invalid ${type} signature.`, {
@@ -319,7 +321,7 @@ var InvalidStructSignatureError = class extends BaseError {
   }
 };
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/errors/struct.js
+// ../../node_modules/abitype/dist/esm/human-readable/errors/struct.js
 var CircularReferenceError = class extends BaseError {
   constructor({ type }) {
     super("Circular reference detected.", {
@@ -334,7 +336,7 @@ var CircularReferenceError = class extends BaseError {
   }
 };
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/errors/splitParameters.js
+// ../../node_modules/abitype/dist/esm/human-readable/errors/splitParameters.js
 var InvalidParenthesisError = class extends BaseError {
   constructor({ current, depth }) {
     super("Unbalanced parentheses.", {
@@ -352,7 +354,7 @@ var InvalidParenthesisError = class extends BaseError {
   }
 };
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/runtime/cache.js
+// ../../node_modules/abitype/dist/esm/human-readable/runtime/cache.js
 function getParameterCacheKey(param, type, structs) {
   let structKey = "";
   if (structs)
@@ -424,7 +426,7 @@ var parameterCache = /* @__PURE__ */ new Map([
   ]
 ]);
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/runtime/utils.js
+// ../../node_modules/abitype/dist/esm/human-readable/runtime/utils.js
 function parseSignature(signature, structs = {}) {
   if (isFunctionSignature(signature)) {
     const match = execFunctionSignature(signature);
@@ -517,7 +519,8 @@ var abiParameterWithoutTupleRegex = /^(?<type>[a-zA-Z$_][a-zA-Z0-9$_]*)(?<array>
 var abiParameterWithTupleRegex = /^\((?<type>.+?)\)(?<array>(?:\[\d*?\])+?)?(?:\s(?<modifier>calldata|indexed|memory|storage{1}))?(?:\s(?<name>[a-zA-Z$_][a-zA-Z0-9$_]*))?$/;
 var dynamicIntegerRegex = /^u?int$/;
 function parseAbiParameter(param, options) {
-  const parameterCacheKey = getParameterCacheKey(param, options?.type, options?.structs);
+  var _a, _b;
+  const parameterCacheKey = getParameterCacheKey(param, options == null ? void 0 : options.type, options == null ? void 0 : options.structs);
   if (parameterCache.has(parameterCacheKey))
     return parameterCache.get(parameterCacheKey);
   const isTuple = isTupleRegex.test(param);
@@ -528,7 +531,7 @@ function parseAbiParameter(param, options) {
     throw new SolidityProtectedKeywordError({ param, name: match.name });
   const name = match.name ? { name: match.name } : {};
   const indexed = match.modifier === "indexed" ? { indexed: true } : {};
-  const structs = options?.structs ?? {};
+  const structs = (options == null ? void 0 : options.structs) ?? {};
   let type;
   let components = {};
   if (isTuple) {
@@ -547,20 +550,20 @@ function parseAbiParameter(param, options) {
     type = `${match.type}256`;
   } else {
     type = match.type;
-    if (!(options?.type === "struct") && !isSolidityType(type))
+    if (!((options == null ? void 0 : options.type) === "struct") && !isSolidityType(type))
       throw new UnknownSolidityTypeError({ type });
   }
   if (match.modifier) {
-    if (!options?.modifiers?.has?.(match.modifier))
+    if (!((_b = (_a = options == null ? void 0 : options.modifiers) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, match.modifier)))
       throw new InvalidModifierError({
         param,
-        type: options?.type,
+        type: options == null ? void 0 : options.type,
         modifier: match.modifier
       });
     if (functionModifiers.has(match.modifier) && !isValidDataLocation(type, !!match.array))
       throw new InvalidFunctionModifierError({
         param,
-        type: options?.type,
+        type: options == null ? void 0 : options.type,
         modifier: match.modifier
       });
   }
@@ -607,7 +610,7 @@ function isValidDataLocation(type, isArray) {
   return isArray || type === "bytes" || type === "string" || type === "tuple";
 }
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/runtime/structs.js
+// ../../node_modules/abitype/dist/esm/human-readable/runtime/structs.js
 function parseStructs(signatures) {
   const shallowStructs = {};
   const signaturesLength = signatures.length;
@@ -655,7 +658,7 @@ function resolveStructs(abiParameters, structs, ancestors = /* @__PURE__ */ new 
       components.push(abiParameter);
     else {
       const match = execTyped(typeWithoutTupleRegex, abiParameter.type);
-      if (!match?.type)
+      if (!(match == null ? void 0 : match.type))
         throw new InvalidAbiTypeParameterError({ abiParameter });
       const { array, type } = match;
       if (type in structs) {
@@ -677,7 +680,7 @@ function resolveStructs(abiParameters, structs, ancestors = /* @__PURE__ */ new 
   return components;
 }
 
-// ../../node_modules/viem/node_modules/abitype/dist/esm/human-readable/parseAbi.js
+// ../../node_modules/abitype/dist/esm/human-readable/parseAbi.js
 function parseAbi(signatures) {
   const structs = parseStructs(signatures);
   const abi = [];
@@ -943,10 +946,12 @@ var errorConfig = {
 };
 var BaseError2 = class _BaseError extends Error {
   constructor(shortMessage, args = {}) {
+    var _a;
     const details = (() => {
+      var _a2;
       if (args.cause instanceof _BaseError)
         return args.cause.details;
-      if (args.cause?.message)
+      if ((_a2 = args.cause) == null ? void 0 : _a2.message)
         return args.cause.message;
       return args.details;
     })();
@@ -955,7 +960,7 @@ var BaseError2 = class _BaseError extends Error {
         return args.cause.docsPath || args.docsPath;
       return args.docsPath;
     })();
-    const docsUrl = errorConfig.getDocsUrl?.({ ...args, docsPath: docsPath4 });
+    const docsUrl = (_a = errorConfig.getDocsUrl) == null ? void 0 : _a.call(errorConfig, { ...args, docsPath: docsPath4 });
     const message = [
       shortMessage || "An error occurred.",
       "",
@@ -1013,7 +1018,7 @@ var BaseError2 = class _BaseError extends Error {
   }
 };
 function walk(err, fn) {
-  if (fn?.(err))
+  if (fn == null ? void 0 : fn(err))
     return err;
   if (err && typeof err === "object" && "cause" in err && err.cause !== void 0)
     return walk(err.cause, fn);
@@ -2766,7 +2771,7 @@ function decodeTuple(cursor, param, { staticPosition }) {
         staticPosition: start
       });
       consumed += consumed_;
-      value[hasUnnamedChild ? i : component?.name] = data;
+      value[hasUnnamedChild ? i : component == null ? void 0 : component.name] = data;
     }
     cursor.setPosition(staticPosition + 32);
     return [value, 32];
@@ -2776,7 +2781,7 @@ function decodeTuple(cursor, param, { staticPosition }) {
     const [data, consumed_] = decodeParameter(cursor, component, {
       staticPosition
     });
-    value[hasUnnamedChild ? i : component?.name] = data;
+    value[hasUnnamedChild ? i : component == null ? void 0 : component.name] = data;
     consumed += consumed_;
   }
   return [value, consumed];
@@ -2796,6 +2801,7 @@ function decodeString(cursor, { staticPosition }) {
   return [value, 32];
 }
 function hasDynamicChild(param) {
+  var _a;
   const { type } = param;
   if (type === "string")
     return true;
@@ -2804,7 +2810,7 @@ function hasDynamicChild(param) {
   if (type.endsWith("[]"))
     return true;
   if (type === "tuple")
-    return param.components?.some(hasDynamicChild);
+    return (_a = param.components) == null ? void 0 : _a.some(hasDynamicChild);
   const arrayComponents = getArrayComponents(param.type);
   if (arrayComponents && hasDynamicChild({ ...param, type: arrayComponents[1] }))
     return true;
@@ -3096,11 +3102,12 @@ var InvalidStorageKeySizeError = class extends BaseError2 {
 };
 var TransactionExecutionError = class extends BaseError2 {
   constructor(cause, { account, docsPath: docsPath4, chain, data, gas, gasPrice, maxFeePerGas, maxPriorityFeePerGas, nonce, to, value }) {
+    var _a;
     const prettyArgs = prettyPrint({
-      chain: chain && `${chain?.name} (id: ${chain?.id})`,
-      from: account?.address,
+      chain: chain && `${chain == null ? void 0 : chain.name} (id: ${chain == null ? void 0 : chain.id})`,
+      from: account == null ? void 0 : account.address,
       to,
-      value: typeof value !== "undefined" && `${formatEther(value)} ${chain?.nativeCurrency?.symbol || "ETH"}`,
+      value: typeof value !== "undefined" && `${formatEther(value)} ${((_a = chain == null ? void 0 : chain.nativeCurrency) == null ? void 0 : _a.symbol) || "ETH"}`,
       data,
       gas,
       gasPrice: typeof gasPrice !== "undefined" && `${formatGwei(gasPrice)} gwei`,
@@ -3163,11 +3170,12 @@ var getUrl = (url) => url;
 // ../../node_modules/viem/_esm/errors/contract.js
 var CallExecutionError = class extends BaseError2 {
   constructor(cause, { account: account_, docsPath: docsPath4, chain, data, gas, gasPrice, maxFeePerGas, maxPriorityFeePerGas, nonce, to, value, stateOverride }) {
+    var _a;
     const account = account_ ? parseAccount(account_) : void 0;
     let prettyArgs = prettyPrint({
-      from: account?.address,
+      from: account == null ? void 0 : account.address,
       to,
-      value: typeof value !== "undefined" && `${formatEther(value)} ${chain?.nativeCurrency?.symbol || "ETH"}`,
+      value: typeof value !== "undefined" && `${formatEther(value)} ${((_a = chain == null ? void 0 : chain.nativeCurrency) == null ? void 0 : _a.symbol) || "ETH"}`,
       data,
       gas,
       gasPrice: typeof gasPrice !== "undefined" && `${formatGwei(gasPrice)} gwei`,
@@ -3211,7 +3219,7 @@ var ContractFunctionExecutionError = class extends BaseError2 {
     const prettyArgs = prettyPrint({
       address: contractAddress && getContractAddress(contractAddress),
       function: functionWithParams,
-      args: formattedArgs && formattedArgs !== "()" && `${[...Array(functionName?.length ?? 0).keys()].map(() => " ").join("")}${formattedArgs}`,
+      args: formattedArgs && formattedArgs !== "()" && `${[...Array((functionName == null ? void 0 : functionName.length) ?? 0).keys()].map(() => " ").join("")}${formattedArgs}`,
       sender
     });
     super(cause.shortMessage || `An unknown error occurred while executing the contract function "${functionName}".`, {
@@ -3299,7 +3307,7 @@ var ContractFunctionRevertedError = class extends BaseError2 {
           }) : void 0;
           metaMessages = [
             errorWithParams ? `Error: ${errorWithParams}` : "",
-            formattedArgs && formattedArgs !== "()" ? `       ${[...Array(errorName?.length ?? 0).keys()].map(() => " ").join("")}${formattedArgs}` : ""
+            formattedArgs && formattedArgs !== "()" ? `       ${[...Array((errorName == null ? void 0 : errorName.length) ?? 0).keys()].map(() => " ").join("")}${formattedArgs}` : ""
           ];
         }
       } catch (err) {
@@ -3458,7 +3466,8 @@ function prepareEncodeFunctionData(parameters) {
 function encodeFunctionData(parameters) {
   const { args } = parameters;
   const { abi, functionName } = (() => {
-    if (parameters.abi.length === 1 && parameters.functionName?.startsWith("0x"))
+    var _a;
+    if (parameters.abi.length === 1 && ((_a = parameters.functionName) == null ? void 0 : _a.startsWith("0x")))
       return parameters;
     return prepareEncodeFunctionData(parameters);
   })();
@@ -3470,7 +3479,8 @@ function encodeFunctionData(parameters) {
 
 // ../../node_modules/viem/_esm/utils/chain/getChainContractAddress.js
 function getChainContractAddress({ blockNumber, chain, contract: name }) {
-  const contract = chain?.contracts?.[name];
+  var _a;
+  const contract = (_a = chain == null ? void 0 : chain.contracts) == null ? void 0 : _a[name];
   if (!contract)
     throw new ChainDoesNotSupportContract({
       chain,
@@ -3491,7 +3501,8 @@ function getChainContractAddress({ blockNumber, chain, contract: name }) {
 // ../../node_modules/viem/_esm/errors/node.js
 var ExecutionRevertedError = class extends BaseError2 {
   constructor({ cause, message } = {}) {
-    const reason = message?.replace("execution reverted: ", "")?.replace("execution reverted", "");
+    var _a;
+    const reason = (_a = message == null ? void 0 : message.replace("execution reverted: ", "")) == null ? void 0 : _a.replace("execution reverted", "");
     super(`Execution reverted ${reason ? `with reason: ${reason}` : "for an unknown reason"}.`, {
       cause,
       name: "ExecutionRevertedError"
@@ -3660,7 +3671,7 @@ Object.defineProperty(TipAboveFeeCapError, "nodeMessage", {
 });
 var UnknownNodeError = class extends BaseError2 {
   constructor({ cause }) {
-    super(`An error occurred while executing: ${cause?.shortMessage}`, {
+    super(`An error occurred while executing: ${cause == null ? void 0 : cause.shortMessage}`, {
       cause,
       name: "UnknownNodeError"
     });
@@ -3751,7 +3762,7 @@ var RpcError = class extends BaseError2 {
     super(shortMessage, {
       cause,
       docsPath: docsPath4,
-      metaMessages: metaMessages || cause?.metaMessages,
+      metaMessages: metaMessages || (cause == null ? void 0 : cause.metaMessages),
       name: name || "RpcError"
     });
     Object.defineProperty(this, "code", {
@@ -4070,7 +4081,7 @@ var UnknownRpcError = class extends RpcError {
 // ../../node_modules/viem/_esm/utils/errors/getNodeError.js
 function getNodeError(err, args) {
   const message = (err.details || "").toLowerCase();
-  const executionRevertedError = err instanceof BaseError2 ? err.walk((e) => e?.code === ExecutionRevertedError.code) : err;
+  const executionRevertedError = err instanceof BaseError2 ? err.walk((e) => (e == null ? void 0 : e.code) === ExecutionRevertedError.code) : err;
   if (executionRevertedError instanceof BaseError2)
     return new ExecutionRevertedError({
       cause: err,
@@ -4084,32 +4095,32 @@ function getNodeError(err, args) {
   if (FeeCapTooHighError.nodeMessage.test(message))
     return new FeeCapTooHighError({
       cause: err,
-      maxFeePerGas: args?.maxFeePerGas
+      maxFeePerGas: args == null ? void 0 : args.maxFeePerGas
     });
   if (FeeCapTooLowError.nodeMessage.test(message))
     return new FeeCapTooLowError({
       cause: err,
-      maxFeePerGas: args?.maxFeePerGas
+      maxFeePerGas: args == null ? void 0 : args.maxFeePerGas
     });
   if (NonceTooHighError.nodeMessage.test(message))
-    return new NonceTooHighError({ cause: err, nonce: args?.nonce });
+    return new NonceTooHighError({ cause: err, nonce: args == null ? void 0 : args.nonce });
   if (NonceTooLowError.nodeMessage.test(message))
-    return new NonceTooLowError({ cause: err, nonce: args?.nonce });
+    return new NonceTooLowError({ cause: err, nonce: args == null ? void 0 : args.nonce });
   if (NonceMaxValueError.nodeMessage.test(message))
-    return new NonceMaxValueError({ cause: err, nonce: args?.nonce });
+    return new NonceMaxValueError({ cause: err, nonce: args == null ? void 0 : args.nonce });
   if (InsufficientFundsError.nodeMessage.test(message))
     return new InsufficientFundsError({ cause: err });
   if (IntrinsicGasTooHighError.nodeMessage.test(message))
-    return new IntrinsicGasTooHighError({ cause: err, gas: args?.gas });
+    return new IntrinsicGasTooHighError({ cause: err, gas: args == null ? void 0 : args.gas });
   if (IntrinsicGasTooLowError.nodeMessage.test(message))
-    return new IntrinsicGasTooLowError({ cause: err, gas: args?.gas });
+    return new IntrinsicGasTooLowError({ cause: err, gas: args == null ? void 0 : args.gas });
   if (TransactionTypeNotSupportedError.nodeMessage.test(message))
     return new TransactionTypeNotSupportedError({ cause: err });
   if (TipAboveFeeCapError.nodeMessage.test(message))
     return new TipAboveFeeCapError({
       cause: err,
-      maxFeePerGas: args?.maxFeePerGas,
-      maxPriorityFeePerGas: args?.maxPriorityFeePerGas
+      maxFeePerGas: args == null ? void 0 : args.maxFeePerGas,
+      maxPriorityFeePerGas: args == null ? void 0 : args.maxPriorityFeePerGas
     });
   return new UnknownNodeError({
     cause: err
@@ -4254,12 +4265,12 @@ function createBatchScheduler({ fn, id, shouldSplitBatch, wait = 0, sort }) {
         data.sort(sort);
       for (let i = 0; i < scheduler.length; i++) {
         const { resolve } = scheduler[i];
-        resolve?.([data[i], data]);
+        resolve == null ? void 0 : resolve([data[i], data]);
       }
     }).catch((err) => {
       for (let i = 0; i < scheduler.length; i++) {
         const { reject } = scheduler[i];
-        reject?.(err);
+        reject == null ? void 0 : reject(err);
       }
     });
   };
@@ -4271,7 +4282,7 @@ function createBatchScheduler({ fn, id, shouldSplitBatch, wait = 0, sort }) {
     flush,
     async schedule(args) {
       const { promise, resolve, reject } = withResolvers();
-      const split2 = shouldSplitBatch?.([...getBatchedArgs(), args]);
+      const split2 = shouldSplitBatch == null ? void 0 : shouldSplitBatch([...getBatchedArgs(), args]);
       if (split2)
         exec();
       const hasActiveScheduler = getScheduler().length > 0;
@@ -4455,7 +4466,8 @@ function assertRequest(args) {
 
 // ../../node_modules/viem/_esm/actions/public/call.js
 async function call(client, args) {
-  const { account: account_ = client.account, batch = Boolean(client.batch?.multicall), blockNumber, blockTag = "latest", accessList, blobs, code, data: data_, factory, factoryData, gas, gasPrice, maxFeePerBlobGas, maxFeePerGas, maxPriorityFeePerGas, nonce, to, value, stateOverride, ...rest } = args;
+  var _a, _b, _c, _d;
+  const { account: account_ = client.account, batch = Boolean((_a = client.batch) == null ? void 0 : _a.multicall), blockNumber, blockTag = "latest", accessList, blobs, code, data: data_, factory, factoryData, gas, gasPrice, maxFeePerBlobGas, maxFeePerGas, maxPriorityFeePerGas, nonce, to, value, stateOverride, ...rest } = args;
   const account = account_ ? parseAccount(account_) : void 0;
   if (code && (factory || factoryData))
     throw new BaseError2("Cannot provide both `code` & `factory`/`factoryData` as parameters.");
@@ -4484,12 +4496,12 @@ async function call(client, args) {
     const blockNumberHex = blockNumber ? numberToHex(blockNumber) : void 0;
     const block = blockNumberHex || blockTag;
     const rpcStateOverride = serializeStateOverride(stateOverride);
-    const chainFormat = client.chain?.formatters?.transactionRequest?.format;
+    const chainFormat = (_d = (_c = (_b = client.chain) == null ? void 0 : _b.formatters) == null ? void 0 : _c.transactionRequest) == null ? void 0 : _d.format;
     const format = chainFormat || formatTransactionRequest;
     const request = format({
       // Pick out extra data that might exist on the chain's transaction request type.
       ...extract(rest, { format: chainFormat }),
-      from: account?.address,
+      from: account == null ? void 0 : account.address,
       accessList,
       blobs,
       data,
@@ -4527,10 +4539,10 @@ async function call(client, args) {
     return { data: response };
   } catch (err) {
     const data2 = getRevertErrorData(err);
-    const { offchainLookup: offchainLookup2, offchainLookupSignature: offchainLookupSignature2 } = await import("./ccip-OACPIPVE.js");
-    if (client.ccipRead !== false && data2?.slice(0, 10) === offchainLookupSignature2 && to)
+    const { offchainLookup: offchainLookup2, offchainLookupSignature: offchainLookupSignature2 } = await import("./ccip-MLEATP5J.js");
+    if (client.ccipRead !== false && (data2 == null ? void 0 : data2.slice(0, 10)) === offchainLookupSignature2 && to)
       return { data: await offchainLookup2(client, { data: data2, to }) };
-    if (deploylessCall && data2?.slice(0, 10) === "0x101bb98d")
+    if (deploylessCall && (data2 == null ? void 0 : data2.slice(0, 10)) === "0x101bb98d")
       throw new CounterfactualDeploymentFailedError({ factory });
     throw getCallError(err, {
       ...args,
@@ -4552,7 +4564,8 @@ function shouldPerformMulticall({ request }) {
   return true;
 }
 async function scheduleMulticall(client, args) {
-  const { batchSize = 1024, wait = 0 } = typeof client.batch?.multicall === "object" ? client.batch.multicall : {};
+  var _a;
+  const { batchSize = 1024, wait = 0 } = typeof ((_a = client.batch) == null ? void 0 : _a.multicall) === "object" ? client.batch.multicall : {};
   const { blockNumber, blockTag = "latest", data, multicallAddress: multicallAddress_, to } = args;
   let multicallAddress = multicallAddress_;
   if (!multicallAddress) {
@@ -4626,20 +4639,22 @@ function toDeploylessCallViaFactoryData(parameters) {
   });
 }
 function getRevertErrorData(err) {
+  var _a;
   if (!(err instanceof BaseError2))
     return void 0;
   const error = err.walk();
-  return typeof error?.data === "object" ? error.data?.data : error.data;
+  return typeof (error == null ? void 0 : error.data) === "object" ? (_a = error.data) == null ? void 0 : _a.data : error.data;
 }
 
 // ../../node_modules/viem/_esm/errors/ccip.js
 var OffchainLookupError = class extends BaseError2 {
   constructor({ callbackSelector, cause, data, extraData, sender, urls }) {
+    var _a;
     super(cause.shortMessage || "An error occurred while fetching for an offchain result.", {
       cause,
       metaMessages: [
         ...cause.metaMessages || [],
-        cause.metaMessages?.length ? "" : [],
+        ((_a = cause.metaMessages) == null ? void 0 : _a.length) ? "" : [],
         "Offchain Gateway Call:",
         urls && [
           "  Gateway URL(s):",
@@ -4721,7 +4736,7 @@ async function offchainLookup(client, { blockNumber, blockTag, data, to }) {
   });
   const [sender, urls, callData, callbackSelector, extraData] = args;
   const { ccipRead } = client;
-  const ccipRequest_ = ccipRead && typeof ccipRead?.request === "function" ? ccipRead.request : ccipRequest;
+  const ccipRequest_ = ccipRead && typeof (ccipRead == null ? void 0 : ccipRead.request) === "function" ? ccipRead.request : ccipRequest;
   try {
     if (!isAddressEqual(to, sender))
       throw new OffchainLookupSenderMismatchError({ sender, to });
@@ -4748,6 +4763,7 @@ async function offchainLookup(client, { blockNumber, blockTag, data, to }) {
   }
 }
 async function ccipRequest({ data, sender, urls }) {
+  var _a;
   let error = new Error("An unknown error occurred.");
   for (let i = 0; i < urls.length; i++) {
     const url = urls[i];
@@ -4761,7 +4777,7 @@ async function ccipRequest({ data, sender, urls }) {
         method
       });
       let result;
-      if (response.headers.get("Content-Type")?.startsWith("application/json")) {
+      if ((_a = response.headers.get("Content-Type")) == null ? void 0 : _a.startsWith("application/json")) {
         result = (await response.json()).data;
       } else {
         result = await response.text();
@@ -4769,7 +4785,7 @@ async function ccipRequest({ data, sender, urls }) {
       if (!response.ok) {
         error = new HttpRequestError({
           body,
-          details: result?.error ? stringify(result.error) : response.statusText,
+          details: (result == null ? void 0 : result.error) ? stringify(result.error) : response.statusText,
           headers: response.headers,
           status: response.status,
           url
@@ -4924,4 +4940,4 @@ export {
 @noble/hashes/esm/utils.js:
   (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
 */
-//# sourceMappingURL=chunk-7PACHBSW.js.map
+//# sourceMappingURL=chunk-YTUDD6II.js.map
