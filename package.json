@@ -28,7 +28,6 @@
         "format:fix": "biome format --write src/"
     },
     "dependencies": {
-        "@elizaos/core": "workspace:*",
         "whatwg-url": "7.1.0",
         "@0x/swap-ts-sdk": "2.1.1"
     },
